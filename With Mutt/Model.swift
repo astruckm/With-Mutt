@@ -9,10 +9,22 @@
 import Foundation
 import CoreLocation
 
-enum BusinessType {
+enum BusinessType: String, CaseIterable, Hashable {
     case restaurant
+    case exercise
     case hotel
+    case service
     case event
+    
+    var label: String {
+        switch self {
+        case .restaurant: return "レストラン"
+        case .exercise: return "運動"
+        case .hotel: return "ホテル"
+        case .service: return "サービス"
+        case .event: return "イベント"
+        }
+    }
 }
 
 struct Business {
@@ -32,6 +44,11 @@ struct Review {
     }
 }
 
-struct User {
+class User {
+    let userName: String
+    var reviews: [Review] = []
     
+    init(userName: String) {
+        self.userName = userName
+    }
 }
