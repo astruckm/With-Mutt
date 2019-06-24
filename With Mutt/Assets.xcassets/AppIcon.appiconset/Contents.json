@@ -31,14 +31,15 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "iPhone_60pt@2x_2.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "iphone_60pt@3x.png",
+      "filename" : "iPhone_60pt@3x_2.png",
       "scale" : "3x"
     },
     {

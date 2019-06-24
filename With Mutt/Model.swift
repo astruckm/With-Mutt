@@ -6,7 +6,7 @@
 //  Copyright © 2019 ASM. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 
 enum BusinessType: String, CaseIterable, Hashable {
@@ -23,6 +23,16 @@ enum BusinessType: String, CaseIterable, Hashable {
         case .hotel: return "ホテル"
         case .service: return "サービス"
         case .event: return "イベント"
+        }
+    }
+    
+    var image: UIImage {
+        switch self {
+        case .restaurant: return #imageLiteral(resourceName: "utensils")
+        case .exercise: return #imageLiteral(resourceName: "dog")
+        case .hotel: return #imageLiteral(resourceName: "bed")
+        case .service: return #imageLiteral(resourceName: "cut")
+        case .event: return #imageLiteral(resourceName: "calendar-alt")
         }
     }
 }

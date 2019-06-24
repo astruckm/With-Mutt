@@ -13,17 +13,28 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var businessSearchStackView: UIStackView!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var businessTypeIcon: UIImageView!
+    @IBOutlet weak var businessTypesContainerView: UIView!
     
+    var currentSelectedBusinessType: BusinessType = .hotel ///eventually save this in Defaults
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpUI()
+        addChildVC()
+        setUpTapGesture()
+    }
+    
+    func addChildVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let businessTypeVC = storyboard.instantiateViewController(withIdentifier: "businessSelection") as! BusinessSelectionViewController
+        addChild(businessTypeVC)
     }
     
     func setUpUI() {
         addDogBackgroundImage()
         dogBackground.bringSubviewToFront(businessSearchStackView)
+        dogBackground.bringSubviewToFront(businessTypesContainerView)
     }
     
     func addDogBackgroundImage() {
@@ -34,15 +45,39 @@ class HomeViewController: UIViewController {
         dogBackground.layer.addSublayer(layer)
     }
     
-    @IBAction func selectBusinessType(_ sender: UITapGestureRecognizer) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "businessSelection")
-        vc.modalPresentationStyle = .overCurrentContext
-        present(vc, animated: true, completion: nil)
+    func setUpTapGesture() {
+        let hideContainerTap = UITapGestureRecognizer(target: self, action: #selector(hideBusinessTypeSelection(_:)))
+        view.addGestureRecognizer(hideContainerTap)
+        self.navigationController?.view.addGestureRecognizer(hideContainerTap)
+        hideContainerTap.delegate = self
     }
     
+    @objc func hideBusinessTypeSelection(_ sender: UITapGestureRecognizer) {
+        businessTypesContainerView.isHidden = true
+    }
     
+    @IBAction func selectBusinessType(_ sender: UITapGestureRecognizer) {
+        businessTypesContainerView.isHidden.toggle()
+    }
+    
+    @IBAction func searchBarTapped(_ sender: UITapGestureRecognizer) {
+        if !businessTypesContainerView.isHidden {
+            businessTypesContainerView.isHidden = true
+            return
+        }
+        print("present search screen here")
+    }
+    
+}
 
-
+extension HomeViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let touchLocation = touch.location(in: businessTypesContainerView)
+        if touchLocation.x < 0.0 || touchLocation.y < 0.0 || touchLocation.x > businessTypesContainerView.frame.width || touchLocation.y > businessTypesContainerView.frame.height {
+            return true
+        }
+        return false
+    }
+    
 }
 

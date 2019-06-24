@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7243BB2B22BFF6C300FDCDD6 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7243BB2A22BFF6C300FDCDD6 /* BusinessViewController.swift */; };
+		7243BB2D22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7243BB2C22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift */; };
 		72B6D61122B154D40073C025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D61022B154D40073C025 /* AppDelegate.swift */; };
 		72B6D61322B154D40073C025 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D61222B154D40073C025 /* HomeViewController.swift */; };
 		72B6D61622B154D40073C025 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B6D61422B154D40073C025 /* Main.storyboard */; };
@@ -29,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7243BB2A22BFF6C300FDCDD6 /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
+		7243BB2C22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSelectionViewController.swift; sourceTree = "<group>"; };
 		72B6D60D22B154D40073C025 /* With Mutt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "With Mutt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B6D61022B154D40073C025 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72B6D61222B154D40073C025 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 				72B6D63022B1576C0073C025 /* Model.swift */,
 				72B6D61222B154D40073C025 /* HomeViewController.swift */,
 				72D45AFC22B829B90059C75A /* BusinessTypeCell.swift */,
-				7243BB2A22BFF6C300FDCDD6 /* BusinessViewController.swift */,
+				7243BB2C22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift */,
 				72B6D61422B154D40073C025 /* Main.storyboard */,
 				72B6D61722B154DC0073C025 /* Assets.xcassets */,
 				72B6D61922B154DC0073C025 /* LaunchScreen.storyboard */,
@@ -206,9 +206,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7243BB2B22BFF6C300FDCDD6 /* BusinessViewController.swift in Sources */,
 				72B6D63122B1576C0073C025 /* Model.swift in Sources */,
 				72B6D61322B154D40073C025 /* HomeViewController.swift in Sources */,
+				7243BB2D22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift in Sources */,
 				72B6D61122B154D40073C025 /* AppDelegate.swift in Sources */,
 				72D45AFD22B829B90059C75A /* BusinessTypeCell.swift in Sources */,
 			);
