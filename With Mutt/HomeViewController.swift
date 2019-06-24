@@ -14,8 +14,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var businessTypeIcon: UIImageView!
     @IBOutlet weak var businessTypesContainerView: UIView!
+    @IBOutlet weak var businessTypeSelect: UIView!
     
-    var currentSelectedBusinessType: BusinessType = .hotel ///eventually save this in Defaults
+    var currentSelectedBusinessType: BusinessType = .restaurant ///eventually save this in Defaults
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,11 @@ class HomeViewController: UIViewController {
         addDogBackgroundImage()
         dogBackground.bringSubviewToFront(businessSearchStackView)
         dogBackground.bringSubviewToFront(businessTypesContainerView)
+        
+        searchView.layer.cornerRadius = 10
+        searchView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        businessTypeSelect.layer.cornerRadius = 10
+        businessTypeSelect.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     }
     
     func addDogBackgroundImage() {
