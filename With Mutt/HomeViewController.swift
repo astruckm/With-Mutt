@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpUI()
+        setupUI()
         addChildVC()
         setUpTapGesture()
     }
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         addChild(businessTypeVC)
     }
     
-    func setUpUI() {
+    func setupUI() {
         addDogBackgroundImage()
         dogBackground.bringSubviewToFront(businessSearchStackView)
         dogBackground.bringSubviewToFront(businessTypesContainerView)
