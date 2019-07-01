@@ -15,8 +15,29 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var businessTypeIcon: UIImageView!
     @IBOutlet weak var businessTypesContainerView: UIView!
     @IBOutlet weak var businessTypeSelect: UIView!
+    @IBOutlet weak var businessTypesHeight: NSLayoutConstraint!
+    @IBOutlet weak var businessTypesWidth: NSLayoutConstraint!
     
     var currentSelectedBusinessType: BusinessType = .restaurant ///eventually save this in Defaults
+    var businessTypesViewShouldShow = false
+    lazy var menu = MenuTableViewController()
+    
+    @IBAction func menuTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func selectBusinessType(_ sender: UITapGestureRecognizer) {
+        businessTypesViewShouldShow.toggle()
+        animateBusinessTypes()
+    }
+    
+    @IBAction func searchBarTapped(_ sender: UITapGestureRecognizer) {
+        if businessTypesViewShouldShow {
+            businessTypesViewShouldShow = false
+            animateBusinessTypes()
+            return
+        }
+        print("present search screen here")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,18 +58,22 @@ class HomeViewController: UIViewController {
         dogBackground.bringSubviewToFront(businessSearchStackView)
         dogBackground.bringSubviewToFront(businessTypesContainerView)
         
-        searchView.layer.cornerRadius = 10
+        searchView.layer.cornerRadius = 5
         searchView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        businessTypeSelect.layer.cornerRadius = 10
+        businessTypeSelect.layer.cornerRadius = 5
         businessTypeSelect.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        businessTypesContainerView.layer.borderColor = UIColor.lightGray.cgColor
+        businessTypesContainerView.layer.borderWidth = 1
     }
     
     func addDogBackgroundImage() {
-        let layer = CALayer()
-        let backgroundImage = UIImage(named: "adorable-animal-animal-photography-1954515")?.cgImage
-        layer.frame = dogBackground.bounds
-        layer.contents = backgroundImage
-        dogBackground.layer.addSublayer(layer)
+        view.layer.contents = #imageLiteral(resourceName: "DogBackground").cgImage
+        
+        //        let layer = CALayer()
+        //        let backgroundImage = UIImage(named: "DogBackground")?.cgImage
+        //        layer.frame = dogBackground.bounds
+        //        layer.contents = backgroundImage
+        //        dogBackground.layer.addSublayer(layer)
     }
     
     func setUpTapGesture() {
@@ -59,19 +84,27 @@ class HomeViewController: UIViewController {
     }
     
     @objc func hideBusinessTypeSelection(_ sender: UITapGestureRecognizer) {
-        businessTypesContainerView.isHidden = true
+        businessTypesViewShouldShow = false
+        animateBusinessTypes()
     }
     
-    @IBAction func selectBusinessType(_ sender: UITapGestureRecognizer) {
-        businessTypesContainerView.isHidden.toggle()
-    }
-    
-    @IBAction func searchBarTapped(_ sender: UITapGestureRecognizer) {
-        if !businessTypesContainerView.isHidden {
-            businessTypesContainerView.isHidden = true
-            return
+    func animateBusinessTypes() {
+        let shownWidth: CGFloat = 211
+        let shownHeight: CGFloat = 232
+        if businessTypesViewShouldShow && self.businessTypesWidth.constant == 0.0 && self.businessTypesHeight.constant == 0.0 {
+            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [.curveEaseIn], animations: {
+                self.businessTypesWidth.constant += shownWidth
+                self.businessTypesHeight.constant += shownHeight
+                self.dogBackground.layoutIfNeeded()
+            }, completion: nil)
+        } else if !businessTypesViewShouldShow && self.businessTypesWidth.constant != 0.0 && self.businessTypesHeight.constant != 0.0 {
+            UIView.animate(withDuration: 0.25) {
+                self.businessTypesWidth.constant -= shownWidth
+                self.businessTypesHeight.constant -= shownHeight
+                self.dogBackground.layoutIfNeeded()
+
+            }
         }
-        print("present search screen here")
     }
     
 }

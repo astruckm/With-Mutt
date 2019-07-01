@@ -52,7 +52,8 @@ class BusinessSelectionViewController: UIViewController, UITableViewDataSource, 
         let selectedBusinessType = BusinessType.allCases[indexPath.row]
         homeVC.businessTypeIcon.image = selectedBusinessType.image
         homeVC.currentSelectedBusinessType = selectedBusinessType
-        homeVC.businessTypesContainerView.isHidden = true
+        homeVC.businessTypesViewShouldShow = false
+        homeVC.animateBusinessTypes()
     }
     
     
