@@ -9,6 +9,10 @@
 import UIKit
 import CoreLocation
 
+protocol CurrentBusinessTypeDelegate {
+    var currentSelectedBusinessType: BusinessType { get set }
+}
+
 enum BusinessType: String, CaseIterable, Hashable {
     case restaurant
     case exercise
@@ -49,7 +53,7 @@ struct Review {
     let text: String
     var score: Int {
         didSet {
-            score = abs(oldValue % 5) ///Constrain the score from 0-5
+            score = abs(score % 5) ///Constrain the score from 0-5
         }
     }
 }

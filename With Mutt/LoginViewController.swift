@@ -63,11 +63,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        //Login here
+        prepareShowingHomeVC()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func logoutTapped(_ sender: UIButton) {
-        //Logout
+        prepareShowingHomeVC()
+        self.dismiss(animated: true, completion: nil)
     }
     
+    func prepareShowingHomeVC() {
+        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "home") as! HomeViewController
+        homeVC.businessTypesViewShouldShow = false
+        homeVC.menuShouldDisplay = false
+    }
 }

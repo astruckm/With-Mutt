@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
     @IBOutlet weak var dogBackground: UIView!
     @IBOutlet weak var businessSearchStackView: UIStackView!
     @IBOutlet weak var searchView: UIView!
@@ -17,12 +17,29 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var businessTypeSelect: UIView!
     @IBOutlet weak var businessTypesHeight: NSLayoutConstraint!
     @IBOutlet weak var businessTypesWidth: NSLayoutConstraint!
+    @IBOutlet weak var menuContainerView: UIView!
+    @IBOutlet weak var menuWidth: NSLayoutConstraint!
     
+    let businessTypesContainerViewShownWidth: CGFloat =
+        UIScreen.main.bounds.width * CGFloat(211.0/414.0)
+    let businessTypesContainerViewShownHeight: CGFloat = UIScreen.main.bounds.height * CGFloat(232.0/896.0)
+    let menuWidthConstant: CGFloat = UIScreen.main.bounds.width * 0.6
     var currentSelectedBusinessType: BusinessType = .restaurant ///eventually save this in Defaults
-    var businessTypesViewShouldShow = false
-    lazy var menu = MenuTableViewController()
+    var businessTypesViewShouldShow = false {
+        didSet {
+            print("businessTypesViewShouldShow: \(businessTypesViewShouldShow)")
+        }
+    }
+    var menuShouldDisplay = false {
+        didSet {
+            print("menuShouldDisplay: \(menuShouldDisplay)")
+        }
+    }
+    lazy var menu = MenuTableViewController() ///TODO: try this approach after container constraint implemented?
     
     @IBAction func menuTapped(_ sender: UIButton) {
+        menuShouldDisplay.toggle()
+        animateMenuDisplay()
     }
     
     @IBAction func selectBusinessType(_ sender: UITapGestureRecognizer) {
@@ -36,21 +53,23 @@ class HomeViewController: UIViewController {
             animateBusinessTypes()
             return
         }
-        print("present search screen here")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        addChildVC()
+        addChildVCs()
         setUpTapGesture()
     }
     
-    func addChildVC() {
+    private func addChildVCs() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let businessTypeVC = storyboard.instantiateViewController(withIdentifier: "businessSelection") as! BusinessSelectionViewController
+        businessTypeVC.businessTypeDelegate = self
+        let menuVC = storyboard.instantiateViewController(withIdentifier: "menuTableVC")
         addChild(businessTypeVC)
+        addChild(menuVC)
     }
     
     func setupUI() {
@@ -68,12 +87,6 @@ class HomeViewController: UIViewController {
     
     func addDogBackgroundImage() {
         view.layer.contents = #imageLiteral(resourceName: "DogBackground").cgImage
-        
-        //        let layer = CALayer()
-        //        let backgroundImage = UIImage(named: "DogBackground")?.cgImage
-        //        layer.frame = dogBackground.bounds
-        //        layer.contents = backgroundImage
-        //        dogBackground.layer.addSublayer(layer)
     }
     
     func setUpTapGesture() {
@@ -89,34 +102,58 @@ class HomeViewController: UIViewController {
     }
     
     func animateBusinessTypes() {
-        let shownWidth: CGFloat = 211
-        let shownHeight: CGFloat = 232
         if businessTypesViewShouldShow && self.businessTypesWidth.constant == 0.0 && self.businessTypesHeight.constant == 0.0 {
-            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [.curveEaseIn], animations: {
-                self.businessTypesWidth.constant += shownWidth
-                self.businessTypesHeight.constant += shownHeight
+            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [.curveEaseOut], animations: {
+                self.businessTypesWidth.constant += self.businessTypesContainerViewShownWidth
+                self.businessTypesHeight.constant += self.businessTypesContainerViewShownHeight
                 self.dogBackground.layoutIfNeeded()
             }, completion: nil)
         } else if !businessTypesViewShouldShow && self.businessTypesWidth.constant != 0.0 && self.businessTypesHeight.constant != 0.0 {
-            UIView.animate(withDuration: 0.25) {
-                self.businessTypesWidth.constant -= shownWidth
-                self.businessTypesHeight.constant -= shownHeight
+            UIView.animate(withDuration: 0.2) {
+                self.businessTypesWidth.constant -= self.businessTypesContainerViewShownWidth
+                self.businessTypesHeight.constant -= self.businessTypesContainerViewShownHeight
                 self.dogBackground.layoutIfNeeded()
 
             }
         }
     }
     
+    func animateMenuDisplay() {
+        if menuShouldDisplay {
+            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [.curveEaseOut], animations: {
+                self.menuWidth.constant += self.menuWidthConstant
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.25) {
+                self.menuWidth.constant -= self.menuWidthConstant
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    
 }
 
 extension HomeViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard !isTouchWithinMenu(touch) else { return false }
+        
         let touchLocation = touch.location(in: businessTypesContainerView)
+        if menuShouldDisplay && touch.location(in: dogBackground).y > 0.0 {
+            menuShouldDisplay = false
+            animateMenuDisplay()
+            return true
+        }
         if touchLocation.x < 0.0 || touchLocation.y < 0.0 || touchLocation.x > businessTypesContainerView.frame.width || touchLocation.y > businessTypesContainerView.frame.height {
             return true
         }
         return false
     }
     
+    private func isTouchWithinMenu(_ touch: UITouch) -> Bool {
+        let touchLocation = touch.location(in: view)
+        return menuShouldDisplay && touchLocation.x <= menuContainerView.frame.width
+    }
 }
 

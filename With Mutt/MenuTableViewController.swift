@@ -14,32 +14,40 @@ class MenuTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        menuTableView.tableFooterView = UIView()
+//        menuTableView.tableHeaderView?.backgroundColor = UIColor(red: 244/255, green: 245/255, blue: 243/255, alpha: 1.0)
+        menuTableView.separatorStyle = .none
     }
 
-    // MARK: - Table view data source
-
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 2
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 56))
+//        headerView.backgroundColor = UIColor(red: 244/255, green: 245/255, blue: 243/255, alpha: 1.0)
+//        return headerView
 //    }
-//
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.backgroundView?.backgroundColor = UIColor(red: 244/255, green: 245/255, blue: 243/255, alpha: 1.0)
+        header.textLabel?.font = UIFont(name: "HiraginoSans-W6", size: 17)
+        header.textLabel?.leftAnchor.constraint(equalTo: tableView.leftAnchor, constant: 10)
     }
-    */
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        let homeVC = self.parent as? HomeViewController
+        switch indexPath.row {
+        case 0: //segue
+            break
+        case 1:
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+            homeVC?.businessTypesViewShouldShow = false
+            homeVC?.menuShouldDisplay = false
+            homeVC?.businessTypesHeight.constant = 0
+            homeVC?.businessTypesWidth.constant = 0
+            homeVC?.menuWidth.constant = 0
+            //TODO: move these to viewDidLoad of LoginVC?
+            homeVC?.present(loginVC, animated: true, completion: nil)
+        default: break
+        }
     }
 }

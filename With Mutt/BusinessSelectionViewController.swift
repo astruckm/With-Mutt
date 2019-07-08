@@ -12,6 +12,7 @@ class BusinessSelectionViewController: UIViewController, UITableViewDataSource, 
     
     @IBOutlet weak var businessTypeTableView: UITableView!
     var rowHeight: CGFloat = 44
+    var businessTypeDelegate: CurrentBusinessTypeDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,6 @@ class BusinessSelectionViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 44
     }
     
@@ -51,7 +51,7 @@ class BusinessSelectionViewController: UIViewController, UITableViewDataSource, 
         guard let homeVC = self.parent as? HomeViewController else { return }
         let selectedBusinessType = BusinessType.allCases[indexPath.row]
         homeVC.businessTypeIcon.image = selectedBusinessType.image
-        homeVC.currentSelectedBusinessType = selectedBusinessType
+        businessTypeDelegate?.currentSelectedBusinessType = selectedBusinessType
         homeVC.businessTypesViewShouldShow = false
         homeVC.animateBusinessTypes()
     }
