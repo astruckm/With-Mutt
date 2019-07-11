@@ -16,15 +16,8 @@ class MenuTableViewController: UITableViewController {
         super.viewDidLoad()
         
         menuTableView.tableFooterView = UIView()
-//        menuTableView.tableHeaderView?.backgroundColor = UIColor(red: 244/255, green: 245/255, blue: 243/255, alpha: 1.0)
         menuTableView.separatorStyle = .none
     }
-
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 56))
-//        headerView.backgroundColor = UIColor(red: 244/255, green: 245/255, blue: 243/255, alpha: 1.0)
-//        return headerView
-//    }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
