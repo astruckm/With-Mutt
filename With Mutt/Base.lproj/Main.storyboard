@@ -455,7 +455,7 @@
                             <constraint firstItem="68x-Zl-VKN" firstAttribute="height" secondItem="LlT-qB-pLS" secondAttribute="height" id="iBl-Kq-yzJ"/>
                             <constraint firstItem="aSL-Ez-Wru" firstAttribute="trailing" secondItem="68x-Zl-VKN" secondAttribute="trailing" id="iEz-Y2-Dzp"/>
                             <constraint firstItem="mqW-WL-4lz" firstAttribute="top" secondItem="ZQ8-xB-9Tc" secondAttribute="bottom" constant="25" id="j05-be-nlu"/>
-                            <constraint firstItem="aSL-Ez-Wru" firstAttribute="leading" secondItem="7QF-bL-zpv" secondAttribute="leading" constant="197" id="lOv-HY-GTt"/>
+                            <constraint firstItem="aSL-Ez-Wru" firstAttribute="leading" relation="lessThanOrEqual" secondItem="7QF-bL-zpv" secondAttribute="leading" constant="197" id="lOv-HY-GTt"/>
                             <constraint firstItem="ZQ8-xB-9Tc" firstAttribute="centerX" secondItem="MS8-Zr-BfU" secondAttribute="centerX" id="oLi-yU-x3S"/>
                             <constraint firstItem="7QF-bL-zpv" firstAttribute="bottom" secondItem="Np6-Qf-CRq" secondAttribute="bottom" constant="25.5" id="pJe-sE-p6a"/>
                             <constraint firstItem="LlT-qB-pLS" firstAttribute="centerX" secondItem="mqW-WL-4lz" secondAttribute="centerX" id="ymU-Mg-24M"/>

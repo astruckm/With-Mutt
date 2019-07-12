@@ -42,5 +42,9 @@ class MenuTableViewController: UITableViewController {
             homeVC?.present(loginVC, animated: true, completion: nil)
         default: break
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
 }
