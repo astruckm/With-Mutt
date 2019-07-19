@@ -196,6 +196,44 @@
             </objects>
             <point key="canvasLocation" x="1902.8985507246377" y="20.758928571428569"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="2dR-vS-LqX">
+            <objects>
+                <viewController storyboardIdentifier="searchVC" id="mN2-Su-NQx" userLabel="Search View Controller" customClass="SearchViewController" customModule="With_Mutt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2fE-mt-ass">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJH-aF-p0z">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="WithMutt_Logo_Launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="Bma-8h-kKR">
+                                        <rect key="frame" x="132" y="27" width="150" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="va8-DH-LN0"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.57254901960000004" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="HIt-sv-qUm" userLabel="height = 119"/>
+                                    <constraint firstItem="Bma-8h-kKR" firstAttribute="centerX" secondItem="SJH-aF-p0z" secondAttribute="centerX" id="eYZ-lf-GLf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SJH-aF-p0z" firstAttribute="leading" secondItem="QJO-AW-rkv" secondAttribute="leading" id="VbD-Ii-leF"/>
+                            <constraint firstItem="SJH-aF-p0z" firstAttribute="centerX" secondItem="QJO-AW-rkv" secondAttribute="centerX" id="YC1-qS-bTw"/>
+                            <constraint firstItem="QJO-AW-rkv" firstAttribute="top" secondItem="SJH-aF-p0z" secondAttribute="top" constant="44" id="vvV-gA-f0s"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QJO-AW-rkv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8CM-kJ-DfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2924.6376811594205" y="20.758928571428569"/>
+        </scene>
         <!--Menu Table View Controller-->
         <scene sceneID="Yha-F1-RSf">
             <objects>

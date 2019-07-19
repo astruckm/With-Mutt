@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		722324FC22DE2B6A008C6A85 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722324FB22DE2B6A008C6A85 /* SearchViewController.swift */; };
 		7243BB2D22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7243BB2C22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift */; };
 		726DABAB22C898FD00F09BE7 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726DABAA22C898FD00F09BE7 /* MenuTableViewController.swift */; };
 		72B6D61122B154D40073C025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D61022B154D40073C025 /* AppDelegate.swift */; };
@@ -15,6 +16,7 @@
 		72B6D61B22B154DC0073C025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B6D61922B154DC0073C025 /* LaunchScreen.storyboard */; };
 		72B6D62622B154DD0073C025 /* With_MuttTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D62522B154DD0073C025 /* With_MuttTests.swift */; };
 		72B6D63122B1576C0073C025 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D63022B1576C0073C025 /* Model.swift */; };
+		72CD7D5922D9A7EF00FB30F9 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD7D5822D9A7EF00FB30F9 /* Client.swift */; };
 		72D1709C22C8630300385226 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D1709B22C8630300385226 /* Images.xcassets */; };
 		72D45AFD22B829B90059C75A /* BusinessTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D45AFC22B829B90059C75A /* BusinessTypeCell.swift */; };
 		72D4B3E322C5B18C006757D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D4B3E222C5B18C006757D0 /* LoginViewController.swift */; };
@@ -32,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		722324FB22DE2B6A008C6A85 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7243BB2C22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSelectionViewController.swift; sourceTree = "<group>"; };
 		726DABAA22C898FD00F09BE7 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		72B6D60D22B154D40073C025 /* With Mutt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "With Mutt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,7 @@
 		72B6D62522B154DD0073C025 /* With_MuttTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = With_MuttTests.swift; sourceTree = "<group>"; };
 		72B6D62722B154DD0073C025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72B6D63022B1576C0073C025 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		72CD7D5822D9A7EF00FB30F9 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		72D1709B22C8630300385226 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72D45AFC22B829B90059C75A /* BusinessTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessTypeCell.swift; sourceTree = "<group>"; };
 		72D4B3E222C5B18C006757D0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 				72F224BA22D7942A00DC54D2 /* View Controllers */,
 				72D45AFC22B829B90059C75A /* BusinessTypeCell.swift */,
 				72B6D61422B154D40073C025 /* Main.storyboard */,
+				72CD7D5822D9A7EF00FB30F9 /* Client.swift */,
 				72B6D61922B154DC0073C025 /* LaunchScreen.storyboard */,
 				72B6D61C22B154DC0073C025 /* Info.plist */,
 				72D1709B22C8630300385226 /* Images.xcassets */,
@@ -116,6 +121,7 @@
 			children = (
 				72D4B3E222C5B18C006757D0 /* LoginViewController.swift */,
 				72B6D61222B154D40073C025 /* HomeViewController.swift */,
+				722324FB22DE2B6A008C6A85 /* SearchViewController.swift */,
 				726DABAA22C898FD00F09BE7 /* MenuTableViewController.swift */,
 				7243BB2C22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift */,
 			);
@@ -172,6 +178,11 @@
 				TargetAttributes = {
 					72B6D60C22B154D40073C025 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					72B6D62022B154DC0073C025 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -223,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722324FC22DE2B6A008C6A85 /* SearchViewController.swift in Sources */,
 				72D4B3E322C5B18C006757D0 /* LoginViewController.swift in Sources */,
 				726DABAB22C898FD00F09BE7 /* MenuTableViewController.swift in Sources */,
 				72B6D63122B1576C0073C025 /* Model.swift in Sources */,
@@ -231,6 +243,7 @@
 				7243BB2D22BFFD1D00FDCDD6 /* BusinessSelectionViewController.swift in Sources */,
 				72B6D61122B154D40073C025 /* AppDelegate.swift in Sources */,
 				72D45AFD22B829B90059C75A /* BusinessTypeCell.swift in Sources */,
+				72CD7D5922D9A7EF00FB30F9 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

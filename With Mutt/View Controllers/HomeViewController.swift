@@ -20,22 +20,14 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
     @IBOutlet weak var menuContainerView: UIView!
     @IBOutlet weak var menuWidth: NSLayoutConstraint!
     
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     let businessTypesContainerViewShownWidth: CGFloat =
         UIScreen.main.bounds.width * CGFloat(211.0/414.0)
     let businessTypesContainerViewShownHeight: CGFloat = UIScreen.main.bounds.height * CGFloat(232.0/896.0)
     let menuWidthConstant: CGFloat = UIScreen.main.bounds.width * 0.6
     var currentSelectedBusinessType: BusinessType = .restaurant ///eventually save this in Defaults
-    var businessTypesViewShouldShow = false {
-        didSet {
-            print("businessTypesViewShouldShow: \(businessTypesViewShouldShow)")
-        }
-    }
-    var menuShouldDisplay = false {
-        didSet {
-            print("menuShouldDisplay: \(menuShouldDisplay)")
-        }
-    }
-    lazy var menu = MenuTableViewController() ///TODO: try this approach after container constraint implemented?
+    var businessTypesViewShouldShow = false
+    var menuShouldDisplay = false
     
     @IBAction func menuTapped(_ sender: UIButton) {
         menuShouldDisplay.toggle()
@@ -53,6 +45,10 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
             animateBusinessTypes()
             return
         }
+        if !menuShouldDisplay {
+            let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchVC")
+            present(searchVC, animated: false, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
@@ -61,6 +57,8 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
         setupUI()
         addChildVCs()
         setUpTapGesture()
+        
+        appDelegate?.locationService.locationManager.requestWhenInUseAuthorization()
     }
     
     private func addChildVCs() {

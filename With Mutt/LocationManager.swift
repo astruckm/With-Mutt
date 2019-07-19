@@ -10,10 +10,10 @@ import UIKit
 import CoreLocation
 
 class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
-    let locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     
-    private override init() {
+    override init() {
         super.init()
         locationManager.delegate = self
     }
@@ -24,12 +24,10 @@ class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
             // Request when-in-use authorization initially
             locationManager.requestWhenInUseAuthorization()
             break
-            
         case .restricted, .denied:
             // Disable location features
             locationManager.stopUpdatingLocation()
             break
-            
         case .authorizedWhenInUse, .authorizedAlways:
             // Enable location features
             locationManager.startUpdatingLocation()
@@ -39,15 +37,14 @@ class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    
     func startReceivingLocationChanges() {
         let authorizationStatus = CLLocationManager.authorizationStatus()
-        if authorizationStatus != .authorizedWhenInUse && authorizationStatus != .authorizedAlways {
+        guard authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways else {
             // User has not authorized access to location information.
             return
         }
         // Do not start services that aren't available.
-        if !CLLocationManager.locationServicesEnabled() {
+        guard CLLocationManager.locationServicesEnabled() else {
             // Location services is not available.
             return
         }
@@ -82,5 +79,22 @@ class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
         }
         
         //TODO: notify the user of error/reason
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways:
+            break
+        case .notDetermined:
+            break
+        case .restricted:
+            break
+        case .denied:
+            break
+        case .authorizedWhenInUse:
+            break
+        @unknown default:
+            break
+        }
     }
 }
