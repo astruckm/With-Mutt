@@ -42,6 +42,7 @@ enum BusinessType: String, CaseIterable, Hashable {
 }
 
 struct Business {
+    let shortenedName: String?
     let name: String
     let location: CLLocation
     let type: BusinessType
@@ -49,20 +50,4 @@ struct Business {
     var reviews: [Review]
 }
 
-struct Review {
-    let text: String
-    var score: Int {
-        didSet {
-            score = abs(score % 5) ///Constrain the score from 0-5
-        }
-    }
-}
 
-class User {
-    let userName: String
-    var reviews: [Review] = []
-    
-    init(userName: String) {
-        self.userName = userName
-    }
-}

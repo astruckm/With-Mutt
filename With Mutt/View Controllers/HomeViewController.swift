@@ -130,6 +130,10 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
         }
     }
     
+    func segueToSearchVC() {
+        let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+        present(searchVC, animated: false, completion: nil)
+    }
     
 }
 
@@ -137,21 +141,36 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         guard !isTouchWithinMenu(touch) else { return false }
         
-        let touchLocation = touch.location(in: businessTypesContainerView)
+        //where menu is up and touch is within background view
         if menuShouldDisplay && touch.location(in: dogBackground).y > 0.0 {
             menuShouldDisplay = false
             animateMenuDisplay()
             return true
         }
-        if touchLocation.x < 0.0 || touchLocation.y < 0.0 || touchLocation.x > businessTypesContainerView.frame.width || touchLocation.y > businessTypesContainerView.frame.height {
+        
+        //where touch is outside bounds of businessTypesContainerView
+        let touchLocationBT = touch.location(in: businessTypesContainerView)
+        if touchLocationBT.x < 0.0 || touchLocationBT.y < 0.0 || touchLocationBT.x > businessTypesContainerView.frame.width || touchLocationBT.y > businessTypesContainerView.frame.height {
             return true
         }
+        
+        //where touch is within search view and no menus/popups are up
+        if !menuShouldDisplay && !businessTypesViewShouldShow && isTouchWithinSearchView(touch) {
+            segueToSearchVC()
+            return true
+        }
+        
         return false
     }
     
     private func isTouchWithinMenu(_ touch: UITouch) -> Bool {
         let touchLocation = touch.location(in: view)
         return menuShouldDisplay && touchLocation.x <= menuContainerView.frame.width
+    }
+    
+    private func isTouchWithinSearchView(_ touch: UITouch) -> Bool {
+        let touchLocationSV = touch.location(in: searchView)
+        return touchLocationSV.x >= 0.0 && touchLocationSV.y >= 0.0 && touchLocationSV.x <= searchView.frame.width && touchLocationSV.y <= searchView.frame.height
     }
 }
 
