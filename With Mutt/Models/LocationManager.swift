@@ -18,25 +18,6 @@ class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
     }
     
-    func enableBasicLocationServices() {
-        switch CLLocationManager.authorizationStatus() {
-        case .notDetermined:
-            // Request when-in-use authorization initially
-            locationManager.requestWhenInUseAuthorization()
-            break
-        case .restricted, .denied:
-            // Disable location features
-            locationManager.stopUpdatingLocation()
-            break
-        case .authorizedWhenInUse, .authorizedAlways:
-            // Enable location features
-            locationManager.startUpdatingLocation()
-            break
-        @unknown default:
-            fatalError("new location authorization status selected")
-        }
-    }
-
     func startReceivingLocationChanges() {
         let authorizationStatus = CLLocationManager.authorizationStatus()
         guard authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways else {
@@ -53,16 +34,39 @@ class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
         locationManager.distanceFilter = 100.0  // In meters.
         locationManager.pausesLocationUpdatesAutomatically = true
         locationManager.delegate = self
-        locationManager.startUpdatingLocation() /// more intensive CL service, consider significant change one
+        enableBasicLocationServices()
     }
+    
+    private func enableBasicLocationServices() {
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            // Request when-in-use authorization initially
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .restricted, .denied:
+            // Disable location features
+            locationManager.stopUpdatingLocation()
+            break
+        case .authorizedWhenInUse, .authorizedAlways:
+            // Enable location features
+            locationManager.startUpdatingLocation() /// more intensive CL service, consider significant change one
+            break
+        @unknown default:
+            fatalError("new location authorization status selected")
+        }
+    }
+
     
     func stopUpatingLocation() {
         locationManager.stopUpdatingLocation()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("didUpdateLocations: \(locations)")
         guard let mostRecentLocation = locations.last else { return }
-        guard mostRecentLocation.timestamp.timeIntervalSinceNow > (60 * 60) else { return }
+        guard abs(mostRecentLocation.timestamp.timeIntervalSinceNow) < (60 * 60) else {
+            return
+        }
         currentLocation = mostRecentLocation
     }
     
@@ -92,7 +96,7 @@ class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
         case .denied:
             break
         case .authorizedWhenInUse:
-            break
+            startReceivingLocationChanges()
         @unknown default:
             break
         }

@@ -114,6 +114,17 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Go to business's page
+        if indexPath.row == 0 {
+            let coordinate = locationService.currentLocation?.coordinate
+            let alert = UIAlertController(title: "Current Location", message: "currentLocation: \(coordinate)", preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(dismissAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
