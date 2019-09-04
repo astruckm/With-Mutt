@@ -47,7 +47,11 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
         }
         if !menuShouldDisplay {
             let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchVC")
-            present(searchVC, animated: false, completion: nil)
+            UIView.animate(withDuration: 0.5, animations: {
+                //Move search stack view up
+            }) { [unowned self] (bool) in
+                self.present(searchVC, animated: false, completion: nil)
+            }
         }
     }
     
