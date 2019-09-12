@@ -46,7 +46,8 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
             return
         }
         if !menuShouldDisplay {
-            let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchVC")
+            let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+            searchVC.currentSelectedBusinessType = self.currentSelectedBusinessType
             UIView.animate(withDuration: 0.5, animations: {
                 //Move search stack view up
             }) { [unowned self] (bool) in
@@ -65,15 +66,6 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
         appDelegate?.locationService.locationManager.requestWhenInUseAuthorization()
     }
     
-    private func addChildVCs() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let businessTypeVC = storyboard.instantiateViewController(withIdentifier: "businessSelection") as! BusinessSelectionViewController
-        businessTypeVC.businessTypeDelegate = self
-        let menuVC = storyboard.instantiateViewController(withIdentifier: "menuTableVC")
-        addChild(businessTypeVC)
-        addChild(menuVC)
-    }
-    
     func setupUI() {
         addDogBackgroundImage()
         dogBackground.bringSubviewToFront(businessSearchStackView)
@@ -85,6 +77,15 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
         businessTypeSelect.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         businessTypesContainerView.layer.borderColor = UIColor.lightGray.cgColor
         businessTypesContainerView.layer.borderWidth = 1
+    }
+    
+    private func addChildVCs() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let businessTypeVC = storyboard.instantiateViewController(withIdentifier: "businessSelection") as! BusinessSelectionViewController
+        businessTypeVC.businessTypeDelegate = self
+        let menuVC = storyboard.instantiateViewController(withIdentifier: "menuTableVC")
+        addChild(businessTypeVC)
+        addChild(menuVC)
     }
     
     func addDogBackgroundImage() {

@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="78" height="64.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="utensils" translatesAutoresizingMaskIntoConstraints="NO" id="96z-YI-2xg">
-                                                        <rect key="frame" x="13" y="10" width="28" height="44.5"/>
+                                                        <rect key="frame" x="13" y="-245.5" width="28" height="556"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caret-down" translatesAutoresizingMaskIntoConstraints="NO" id="jre-Ra-2Th">
                                                         <rect key="frame" x="49" y="25" width="24" height="15"/>
@@ -241,6 +241,10 @@
                                                     <constraint firstAttribute="trailing" secondItem="RDF-4D-N1d" secondAttribute="trailing" constant="5" id="jpA-kx-Keb"/>
                                                     <constraint firstItem="RDF-4D-N1d" firstAttribute="centerY" secondItem="K22-Bl-bz9" secondAttribute="centerY" id="toZ-1p-w3S"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="TzC-Bu-E1w" appends="YES" id="ctX-Ob-1OM"/>
+                                                    <outletCollection property="gestureRecognizers" destination="piZ-eZ-Cvb" appends="YES" id="mPJ-I9-T6C"/>
+                                                </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tZ-oW-0XG" userLabel="Border View">
                                                 <rect key="frame" x="78" y="0.0" width="2" height="59"/>
@@ -284,6 +288,9 @@
                                     <constraint firstAttribute="width" id="aqD-jP-cCs"/>
                                     <constraint firstAttribute="height" id="dhZ-bJ-hVS"/>
                                 </constraints>
+                                <connections>
+                                    <segue destination="fxA-Oq-v0Z" kind="embed" id="8CM-Tv-ZIl"/>
+                                </connections>
                             </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R2P-XG-iTR">
                                 <rect key="frame" x="0.0" y="173" width="414" height="689"/>
@@ -371,10 +378,23 @@
                         <outlet property="businessTypeIcon" destination="Ofg-Hm-aNI" id="W74-Xw-8KE"/>
                         <outlet property="businessTypeSelect" destination="K22-Bl-bz9" id="Frs-Cy-FGG"/>
                         <outlet property="businessTypesContainerView" destination="F0G-Dg-RA7" id="T14-ee-1Cz"/>
+                        <outlet property="businessTypesHeight" destination="dhZ-bJ-hVS" id="GYc-Kx-us8"/>
+                        <outlet property="businessTypesWidth" destination="aqD-jP-cCs" id="afO-7H-rRC"/>
                         <outlet property="searchTextField" destination="2s4-oA-idp" id="E9c-Mw-Qug"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8CM-kJ-DfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="TzC-Bu-E1w">
+                    <connections>
+                        <action selector="searchBarTapped:" destination="mN2-Su-NQx" id="V5F-IG-CAL"/>
+                        <outlet property="delegate" destination="mN2-Su-NQx" id="9hP-5S-kaW"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="piZ-eZ-Cvb">
+                    <connections>
+                        <action selector="selectBusinessType:" destination="mN2-Su-NQx" id="P5m-O6-E8p"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2924.6376811594205" y="20.758928571428569"/>
         </scene>
@@ -466,7 +486,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX6-jX-onS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079.7101449275362" y="712.5"/>
+            <point key="canvasLocation" x="1078" y="721"/>
         </scene>
         <!--Business Selection View Controller-->
         <scene sceneID="6AS-uR-KCk">
@@ -687,4 +707,7 @@
         <image name="user" width="500" height="556"/>
         <image name="utensils" width="500" height="556"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MqT-H8-zeP"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -8,27 +8,60 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-    
+class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
     @IBOutlet weak var businessTypeIcon: UIImageView!
     @IBOutlet weak var businessTypeSelect: UIView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var businessTypesContainerView: UIView!
     @IBOutlet weak var autocompleteTableView: UITableView!
+    @IBOutlet weak var businessTypesWidth: NSLayoutConstraint!
+    @IBOutlet weak var businessTypesHeight: NSLayoutConstraint!
+    
     
     let cellHeight: CGFloat = 64
     let locationService = WithMuttLocationService()
     var autocompleteResults: [Business] = []
+    var businessTypesViewShouldShow = false
+    let businessTypesContainerViewShownWidth: CGFloat =
+        UIScreen.main.bounds.width * CGFloat(211.0/414.0)
+    let businessTypesContainerViewShownHeight: CGFloat = UIScreen.main.bounds.height * CGFloat(232.0/896.0)
+    var currentSelectedBusinessType: BusinessType = .restaurant
     
+    @IBAction func selectBusinessType(_ sender: UITapGestureRecognizer) {
+        businessTypesViewShouldShow.toggle()
+        animateBusinessTypes()
+    }
+    
+    @IBAction func searchBarTapped(_ sender: UITapGestureRecognizer) {
+        if businessTypesViewShouldShow {
+            businessTypesViewShouldShow = false
+            animateBusinessTypes()
+            return
+        }
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+        addChildVCs()
         configureSearchTextField()
+    }
+    
+    private func setupUI() {
         autocompleteTableView.tableFooterView = UIView()
         autocompleteTableView.separatorStyle = .none
+        view.bringSubviewToFront(businessTypesContainerView)
     }
+    
+    private func addChildVCs() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let businessTypeVC = storyboard.instantiateViewController(withIdentifier: "businessSelection") as! BusinessSelectionViewController
+        businessTypeVC.businessTypeDelegate = self
+        addChild(businessTypeVC)
+    }
+
     
     func configureSearchTextField() {
         let buttonWidth: CGFloat = searchTextField.bounds.width / 16
@@ -49,6 +82,23 @@ class SearchViewController: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     
+    func animateBusinessTypes() {
+        if businessTypesViewShouldShow && self.businessTypesWidth.constant == 0.0 && self.businessTypesHeight.constant == 0.0 {
+            print("should show")
+            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [.curveEaseOut], animations: {
+                self.businessTypesWidth.constant += self.businessTypesContainerViewShownWidth
+                self.businessTypesHeight.constant += self.businessTypesContainerViewShownHeight
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        } else if !businessTypesViewShouldShow && self.businessTypesWidth.constant != 0.0 && self.businessTypesHeight.constant != 0.0 {
+            print("should hide")
+            UIView.animate(withDuration: 0.2) {
+                self.businessTypesWidth.constant -= self.businessTypesContainerViewShownWidth
+                self.businessTypesHeight.constant -= self.businessTypesContainerViewShownHeight
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
 
 
 }
@@ -57,6 +107,14 @@ extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("should clear")
         dismiss(animated: false, completion: nil)
+        return true
+    }
+}
+
+extension SearchViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        //
+        
         return true
     }
 }
