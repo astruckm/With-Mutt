@@ -48,12 +48,21 @@ class BusinessSelectionViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row <= BusinessType.allCases.count - 1 else { return }
-        guard let homeVC = self.parent as? HomeViewController else { return }
+        let parentVC = self.parent
         let selectedBusinessType = BusinessType.allCases[indexPath.row]
-        homeVC.businessTypeIcon.image = selectedBusinessType.image
         businessTypeDelegate?.currentSelectedBusinessType = selectedBusinessType
-        homeVC.businessTypesViewShouldShow = false
-        homeVC.animateBusinessTypes()
+
+        if let homeVC = parentVC as? HomeViewController {
+            homeVC.currentSelectedBusinessType = selectedBusinessType
+            homeVC.businessTypeIcon.image = selectedBusinessType.image
+            homeVC.businessTypesViewShouldShow = false
+            homeVC.animateBusinessTypes()
+        } else if let searchVC = parentVC as? SearchViewController {
+            searchVC.currentSelectedBusinessType = selectedBusinessType
+            searchVC.businessTypeIcon.image = selectedBusinessType.image
+            searchVC.businessTypesViewShouldShow = false
+            searchVC.animateBusinessTypes()
+        }
     }
     
     

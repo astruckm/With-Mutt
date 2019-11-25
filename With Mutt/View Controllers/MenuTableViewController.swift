@@ -27,6 +27,8 @@ class MenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO: need some way to tell by which VC this menu is being presented
+        
         let homeVC = self.parent as? HomeViewController
         switch indexPath.row {
         case 0: //segue

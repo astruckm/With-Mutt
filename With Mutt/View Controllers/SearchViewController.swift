@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
     @IBOutlet weak var autocompleteTableView: UITableView!
     @IBOutlet weak var businessTypesWidth: NSLayoutConstraint!
     @IBOutlet weak var businessTypesHeight: NSLayoutConstraint!
+    @IBOutlet weak var businessSearchStackView: UIStackView!
     
     
     let cellHeight: CGFloat = 64
@@ -76,6 +77,8 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
         
         searchTextField.rightView = clearButtonFrame
         searchTextField.rightViewMode = .always
+        
+        searchTextField.becomeFirstResponder()
     }
     
     @objc func clearButtonTapped() {
@@ -84,14 +87,12 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
     
     func animateBusinessTypes() {
         if businessTypesViewShouldShow && self.businessTypesWidth.constant == 0.0 && self.businessTypesHeight.constant == 0.0 {
-            print("should show")
             UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [.curveEaseOut], animations: {
                 self.businessTypesWidth.constant += self.businessTypesContainerViewShownWidth
                 self.businessTypesHeight.constant += self.businessTypesContainerViewShownHeight
                 self.view.layoutIfNeeded()
             }, completion: nil)
         } else if !businessTypesViewShouldShow && self.businessTypesWidth.constant != 0.0 && self.businessTypesHeight.constant != 0.0 {
-            print("should hide")
             UIView.animate(withDuration: 0.2) {
                 self.businessTypesWidth.constant -= self.businessTypesContainerViewShownWidth
                 self.businessTypesHeight.constant -= self.businessTypesContainerViewShownHeight
@@ -106,18 +107,33 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("should clear")
-        dismiss(animated: false, completion: nil)
+        dismiss(animated: true, completion: nil)
         return true
     }
-}
-
-extension SearchViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        //
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //TODO: search the typed result (like Yelp) OR have it automatically selected first autocomplete row (Bring Fido)?
         
         return true
     }
 }
+
+    //extension SearchViewController: UIGestureRecognizerDelegate {
+    //    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    //        if !isTouchWithinSearchStackView(touch) && searchTextField.isEditing {
+    //            //Dismiss keyboard
+    //            print("Should resign first responder")
+    //            searchTextField.resignFirstResponder()
+    //        }
+    //        return true
+    //    }
+    //
+    //    private func isTouchWithinSearchStackView(_ touch: UITouch) -> Bool {
+    //        let touchLocationSearchField = touch.location(in: businessSearchStackView)
+    //        //Touch is outside search text field
+    //        return touchLocationSearchField.x >= 0.0 && touchLocationSearchField.x <= searchTextField.frame.width && touchLocationSearchField.y >= 0.0 && touchLocationSearchField.y <= searchTextField.frame.height
+    //    }
+    //}
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -177,6 +193,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.row == 0 {
             //Use current location
+        } else {
+            //Use location name selected
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
