@@ -60,6 +60,7 @@
 		72D45AFC22B829B90059C75A /* BusinessTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessTypeCell.swift; sourceTree = "<group>"; };
 		72D4B3E222C5B18C006757D0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		72F224BB22D7969D00DC54D2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		72FECA0E238BA8D700ED79FE /* With Mutt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "With Mutt.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +133,7 @@
 		72B6D60F22B154D40073C025 /* With Mutt */ = {
 			isa = PBXGroup;
 			children = (
+				72FECA0E238BA8D700ED79FE /* With Mutt.entitlements */,
 				72B6D61022B154D40073C025 /* AppDelegate.swift */,
 				724FA53B22F1177400872CD2 /* Models */,
 				72F224BA22D7942A00DC54D2 /* View Controllers */,
@@ -445,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "With Mutt/With Mutt.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 48535654Y7;
 				INFOPLIST_FILE = "With Mutt/Info.plist";
@@ -453,6 +456,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ASM.With-Mutt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -464,6 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "With Mutt/With Mutt.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 48535654Y7;
 				INFOPLIST_FILE = "With Mutt/Info.plist";
@@ -472,6 +477,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ASM.With-Mutt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
