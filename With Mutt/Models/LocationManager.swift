@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class WithMuttLocationService: NSObject, CLLocationManagerDelegate {
+class LocationService: NSObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     

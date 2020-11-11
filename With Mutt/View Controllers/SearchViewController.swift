@@ -20,7 +20,7 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
     
     
     let cellHeight: CGFloat = 64
-    let locationService = WithMuttLocationService()
+    let locationService = LocationService()
     var autocompleteResults: [Business] = []
     var businessTypesViewShouldShow = false
     let businessTypesContainerViewShownWidth: CGFloat =

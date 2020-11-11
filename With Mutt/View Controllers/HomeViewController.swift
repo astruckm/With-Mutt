@@ -2,9 +2,11 @@
 //  HomeViewController.swift
 //  With Mutt
 //
-//  Created by ASM on 6/12/19.
-//  Copyright © 2019 ASM. All rights reserved.
+//  Created by Andrew Struck-Marcell on 6/12/19.
+//  Copyright © 2019 Andrew Struck-Marcell. All rights reserved.
 //
+//
+//  The main view controller for the home screen, this View Controller is the first one the user sees. It enables searching businesses and changing preferences.
 
 import UIKit
 
