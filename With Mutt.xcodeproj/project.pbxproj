@@ -21,6 +21,7 @@
 		72B6D62622B154DD0073C025 /* With_MuttTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D62522B154DD0073C025 /* With_MuttTests.swift */; };
 		72B6D63122B1576C0073C025 /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D63022B1576C0073C025 /* BusinessModel.swift */; };
 		72CD7D5922D9A7EF00FB30F9 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD7D5822D9A7EF00FB30F9 /* Client.swift */; };
+		72CE7613255CCE96008E27A9 /* UI Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CE7612255CCE96008E27A9 /* UI Extensions.swift */; };
 		72D1709C22C8630300385226 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D1709B22C8630300385226 /* Images.xcassets */; };
 		72D45AFD22B829B90059C75A /* BusinessTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D45AFC22B829B90059C75A /* BusinessTypeCell.swift */; };
 		72D4B3E322C5B18C006757D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D4B3E222C5B18C006757D0 /* LoginViewController.swift */; };
@@ -56,6 +57,7 @@
 		72B6D62722B154DD0073C025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72B6D63022B1576C0073C025 /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
 		72CD7D5822D9A7EF00FB30F9 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		72CE7612255CCE96008E27A9 /* UI Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Extensions.swift"; sourceTree = "<group>"; };
 		72D1709B22C8630300385226 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72D45AFC22B829B90059C75A /* BusinessTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessTypeCell.swift; sourceTree = "<group>"; };
 		72D4B3E222C5B18C006757D0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				72FECA0E238BA8D700ED79FE /* With Mutt.entitlements */,
 				72B6D61022B154D40073C025 /* AppDelegate.swift */,
+				72CE7611255CCE76008E27A9 /* Helpers */,
 				724FA53B22F1177400872CD2 /* Models */,
 				72F224BA22D7942A00DC54D2 /* View Controllers */,
 				724FA54022F1469000872CD2 /* Views */,
@@ -152,6 +155,14 @@
 				72B6D62722B154DD0073C025 /* Info.plist */,
 			);
 			path = "With MuttTests";
+			sourceTree = "<group>";
+		};
+		72CE7611255CCE76008E27A9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				72CE7612255CCE96008E27A9 /* UI Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		72F224BA22D7942A00DC54D2 /* View Controllers */ = {
@@ -272,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CE7613255CCE96008E27A9 /* UI Extensions.swift in Sources */,
 				722324FC22DE2B6A008C6A85 /* SearchViewController.swift in Sources */,
 				72D4B3E322C5B18C006757D0 /* LoginViewController.swift in Sources */,
 				726DABAB22C898FD00F09BE7 /* MenuTableViewController.swift in Sources */,

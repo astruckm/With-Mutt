@@ -12,6 +12,7 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
     @IBOutlet weak var businessTypeIcon: UIImageView!
     @IBOutlet weak var businessTypeSelect: UIView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var businessTypesContainerView: UIView!
     @IBOutlet weak var autocompleteTableView: UITableView!
     @IBOutlet weak var businessTypesWidth: NSLayoutConstraint!
@@ -54,6 +55,12 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
         autocompleteTableView.tableFooterView = UIView()
         autocompleteTableView.separatorStyle = .none
         view.bringSubviewToFront(businessTypesContainerView)
+        searchContainerView.bringSubviewToFront(businessSearchStackView)
+        businessTypeSelect.layer.cornerRadius = 5
+        businessTypeSelect.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        searchTextField.layer.cornerRadius = 5
+        searchTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        searchTextField.addSpaceBeforeText()
     }
     
     private func addChildVCs() {
