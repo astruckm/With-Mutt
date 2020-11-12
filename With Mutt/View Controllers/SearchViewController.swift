@@ -120,27 +120,10 @@ extension SearchViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //TODO: search the typed result (like Yelp) OR have it automatically selected first autocomplete row (Bring Fido)?
-        
+        textField.resignFirstResponder()
         return true
     }
 }
-
-    //extension SearchViewController: UIGestureRecognizerDelegate {
-    //    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-    //        if !isTouchWithinSearchStackView(touch) && searchTextField.isEditing {
-    //            //Dismiss keyboard
-    //            print("Should resign first responder")
-    //            searchTextField.resignFirstResponder()
-    //        }
-    //        return true
-    //    }
-    //
-    //    private func isTouchWithinSearchStackView(_ touch: UITouch) -> Bool {
-    //        let touchLocationSearchField = touch.location(in: businessSearchStackView)
-    //        //Touch is outside search text field
-    //        return touchLocationSearchField.x >= 0.0 && touchLocationSearchField.x <= searchTextField.frame.width && touchLocationSearchField.y >= 0.0 && touchLocationSearchField.y <= searchTextField.frame.height
-    //    }
-    //}
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
