@@ -25,8 +25,8 @@ class SearchViewController: UIViewController, CurrentBusinessTypeDelegate {
     var autocompleteResults: [Business] = []
     var businessTypesViewShouldShow = false
     let businessTypesContainerViewShownWidth: CGFloat =
-        UIScreen.main.bounds.width * CGFloat(211.0/414.0)
-    let businessTypesContainerViewShownHeight: CGFloat = UIScreen.main.bounds.height * CGFloat(232.0/896.0)
+        UIScreen.main.bounds.width * CGFloat(192.0/414.0)
+    let businessTypesContainerViewShownHeight: CGFloat = UIScreen.main.bounds.height * CGFloat(272.0/896.0)
     var currentSelectedBusinessType: BusinessType = .restaurant
     
     @IBAction func selectBusinessType(_ sender: UITapGestureRecognizer) {
@@ -130,7 +130,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         if section == 0 {
             return 1
         }
-        return autocompleteResults.count + 1
+        return autocompleteResults.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -146,16 +146,16 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: cellHeight))
         let labelHeight: CGFloat = cellHeight/3
-        let label = UILabel(frame: CGRect(x: 0, y: 0/*(cellHeight/2 - labelHeight/2*/, width: 64, height: labelHeight))
-        label.text = "つつつ"
+        let label = UILabel(/*frame: CGRect(x: 0, y: 0, width: 64, height: labelHeight)*/)
+        label.text = "サーチレゾルト"
         label.font = UIFont(name: "HiraginoSans-W6", size: 22)
-        label.textColor = .lightGray
+        label.textColor = .darkGray
         headerView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16).isActive = true
         label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
         label.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
-        label.widthAnchor.constraint(equalToConstant: 96).isActive = true
+        label.widthAnchor.constraint(greaterThanOrEqualToConstant: 96).isActive = true
         
         return headerView
     }

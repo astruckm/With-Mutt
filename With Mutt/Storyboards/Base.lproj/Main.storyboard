@@ -96,8 +96,8 @@
                                             <constraint firstItem="vvJ-3u-IFJ" firstAttribute="width" secondItem="gK9-g1-HFP" secondAttribute="width" multiplier="0.25" id="Tjy-iR-gOf"/>
                                         </constraints>
                                     </stackView>
-                                    <containerView opaque="NO" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0C-bN-2Fc" userLabel="Business Types Container View">
-                                        <rect key="frame" x="13.5" y="204.5" width="0.0" height="0.0"/>
+                                    <containerView opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c0C-bN-2Fc" userLabel="Business Types Container View">
+                                        <rect key="frame" x="13.5" y="204.5" width="224" height="336"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -299,8 +299,8 @@
                                                         <constraint firstAttribute="width" secondItem="i5J-yS-rqe" secondAttribute="height" multiplier="1:1" id="Xpq-Vr-X5d"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="つつつ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWw-aY-9wK">
-                                                    <rect key="frame" x="100" y="13.5" width="52" height="26.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カレントロケーション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWw-aY-9wK">
+                                                    <rect key="frame" x="100" y="13.5" width="173.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

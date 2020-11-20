@@ -24,8 +24,8 @@ class HomeViewController: UIViewController, CurrentBusinessTypeDelegate {
     
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     let businessTypesContainerViewShownWidth: CGFloat =
-        UIScreen.main.bounds.width * CGFloat(211.0/414.0)
-    let businessTypesContainerViewShownHeight: CGFloat = UIScreen.main.bounds.height * CGFloat(232.0/896.0)
+        UIScreen.main.bounds.width * CGFloat(192.0/414.0)
+    let businessTypesContainerViewShownHeight: CGFloat = UIScreen.main.bounds.height * CGFloat(272.0/896.0)
     let menuWidthConstant: CGFloat = UIScreen.main.bounds.width * 0.6
     var currentSelectedBusinessType: BusinessType = .restaurant ///eventually save this in Defaults
     var businessTypesViewShouldShow = false

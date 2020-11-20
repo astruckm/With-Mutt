@@ -17,3 +17,16 @@ extension UITextField {
         self.contentVerticalAlignment = .center
     }
 }
+
+extension UIViewController {
+    func dismissKeyboardOnTouch() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.viewEndEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc fileprivate func viewEndEditing() {
+        view.endEditing(true)
+    }
+}
+

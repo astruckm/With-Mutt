@@ -31,7 +31,7 @@ class BusinessSelectionViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return tableView.bounds.height / CGFloat(BusinessType.allCases.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -23,12 +23,9 @@ class MenuTableViewController: UITableViewController {
         let header = view as! UITableViewHeaderFooterView
         header.backgroundView?.backgroundColor = UIColor(red: 244/255, green: 245/255, blue: 243/255, alpha: 1.0)
         header.textLabel?.font = UIFont(name: "HiraginoSans-W6", size: 17)
-        header.textLabel?.leftAnchor.constraint(equalTo: tableView.leftAnchor, constant: 10)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: need some way to tell by which VC this menu is being presented
-        
         let homeVC = self.parent as? HomeViewController
         switch indexPath.row {
         case 0: //segue
